@@ -1,0 +1,81 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/gass_group_website/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  role          String    @default("client")
+  company       String?
+  phone         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model BlogPost {
+  id            String    @id @default(cuid())
+  titleFr       String
+  titleEn       String
+  slugFr        String    @unique
+  slugEn        String    @unique
+  contentFr     String
+  contentEn     String
+  excerptFr     String?
+  excerptEn     String?
+  imageUrl      String?
+  category      String
+  published     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Project {
+  id            String    @id @default(cuid())
+  titleFr       String
+  titleEn       String
+  descriptionFr String
+  descriptionEn String
+  imageUrl      String?
+  category      String
+  client        String?
+  year          Int?
+  featured      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ContactRequest {
+  id            String    @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  company       String?
+  subject       String
+  message       String
+  service       String?
+  status        String    @default("new")
+  createdAt     DateTime  @default(now())
+}
+
+model QuoteRequest {
+  id            String    @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  company       String?
+  service       String
+  description   String
+  budget        String?
+  timeline      String?
+  status        String    @default("pending")
+  createdAt     DateTime  @default(now())
+}
