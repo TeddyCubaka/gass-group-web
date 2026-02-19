@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-docker stop web-2 || true
-docker rm web-2 || true
+docker stop gass-group || true
+docker rm gass-group || true
 
-docker build -t web2 .
+docker build -t gass-group-img .
 
-docker stop web-2 || true
-docker rm web-2 || true
+docker stop gass-group || true
+docker rm gass-group || true
 
-docker run -d -p 3000:3000 --name web-2 web2
+docker run -d -p 3000:3000 --name gass-group web2
