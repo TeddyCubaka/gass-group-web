@@ -12,6 +12,10 @@ RUN yarn install
 
 COPY .env ./
 
+RUN yarn prisma generate
+
+RUN yarn migrate deploy
+
 RUN yarn build
 
 EXPOSE 3000
