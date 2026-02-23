@@ -14,7 +14,7 @@ COPY .env ./
 
 RUN yarn prisma generate
 
-RUN yarn migrate deploy
+RUN yarn prisma migrate deploy
 
 RUN yarn build
 
